@@ -23,13 +23,18 @@ class ViewController: UIViewController {
     
     }
     
-    DataManager.getTopAppsDataFromItunesWithSuccess { (iTunesData) -> Void in
-    let json = JSON(data: iTunesData)
-    if let appName = json["feed"]["entry"][0]["im:name"]["label"].string {
-    print("NSURLSession: \(appName)")
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        DataManager.getTopAppsDataFromItunesWithSuccess { (iTunesData) -> Void in
+            let json = JSON(data: iTunesData)
+            if let appName = json["feed"]["entry"][0]["im:name"]["label"].string {
+                print("NSURLSession: \(appName)")
+            }
+            // More soon...
+        }
     }
-    // More soon...
-    }
+    
+    
   }
 
 
